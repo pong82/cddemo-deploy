@@ -45,6 +45,7 @@
                 docker cp env.html "$CONTAINER":/var/www/html/
                 docker service ps -f 'Desired-State'=Running app1blue|grep php-sample|sed 's#  #<br>#g'>status.html
                 docker cp status.html "$CONTAINER":/var/www/html/
+                
             fi
         '''
      }
