@@ -13,7 +13,7 @@
     stage("Deploy"){
         sh '''
             GREENVER="latest"
-            BLUEVER="latest"
+            BLUEVER="53"
             ENV=$(curl -s http://cdtest.aimail.me/app1/env.html|grep "green"|wc -l)
             if [[ "$ENV" -eq 0 ]]; then
                 SERVICES=$(docker service ls --filter name=app1green --quiet | wc -l)
@@ -45,7 +45,7 @@
                 docker cp env.html "$CONTAINER":/var/www/html/
                 docker service ps -f 'Desired-State'=Running app1blue|grep php-sample|sed 's#  #<br>#g'>status.html
                 docker cp status.html "$CONTAINER":/var/www/html/
-                
+
             fi
         '''
      }
