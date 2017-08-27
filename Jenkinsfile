@@ -12,8 +12,8 @@
 
     stage("Deploy"){
         sh '''
-            GREENVER="latest"
-            BLUEVER="53"
+            GREENVER="53"
+            BLUEVER="latest"
             ENV=$(curl -s http://cdtest.aimail.me/app1/env.html|grep "green"|wc -l)
             if [[ "$ENV" -eq 0 ]]; then
                 SERVICES=$(docker service ls --filter name=app1green --quiet | wc -l)
